@@ -2,6 +2,7 @@ name: My GitHub Workflow
 
 on:
   workflow_dispatch:
+  push:
 
 
 jobs:
