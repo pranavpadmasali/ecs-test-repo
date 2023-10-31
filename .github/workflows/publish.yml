@@ -1,20 +1,40 @@
-name: publish
-on: [push]
+name: My GitHub Workflow
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
-  publish-hello-docker-image:
-    permissions:
-      contents: read
-      packages: write
+  job1:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build the hello-docker Docker image
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Job 1
         run: |
-          docker build . --tag ghcr.io/pranavpadmasali/ecs-test-repo:latest
-          docker push ghcr.io/pranavpadmasali/ecs-test-repo:latest
+          echo "Running Job 1"
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Job 2
+        run: |
+          echo "Running Job 2"
+
+
+  manual_job:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Manual Job
+        run: |
+          echo "Running Job 3"
