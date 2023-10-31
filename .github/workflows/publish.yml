@@ -7,6 +7,7 @@ on:
 
 jobs:
   job1:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -17,6 +18,7 @@ jobs:
           echo "Running Job 1"
 
   job2:
+    if: github.event_name == 'push'
     needs: job1
     runs-on: ubuntu-latest
     steps:
