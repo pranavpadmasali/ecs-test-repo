@@ -21,3 +21,4 @@ jobs:
           [ $success -eq 1 ] || exit 42
           sudo kvm-ok
           sudo systemctl enable --now libvirtd
+          grep -E --color '(vmx|svm)' /proc/cpuinfo
