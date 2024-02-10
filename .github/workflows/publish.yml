@@ -6,37 +6,18 @@ on:
 
 
 jobs:
-  job1:
-    if: github.event_name == 'push'
-    runs-on: ubuntu-latest
+  check-kvm:
+    runs-on: ubuntu-22.04
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Run Job 1
+      - name: Check qemu-kvm
         run: |
-          echo "Running Job 1"
-
-  job2:
-    if: github.event_name == 'push'
-    needs: job1
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Run Job 2
-        run: |
-          echo "Running Job 2"
-
-
-  manual_job:
-    if: github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Run Manual Job
-        run: |
-          echo "Running Job 3"
+          n=0
+          until [ "$n" -ge 5 ]; do
+            success=1
+            sudo apt update && sudo apt install -y cpu-checker qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virtinst virt-manager libvirt-daemon && break || success=0
+            n=$((n+1)) 
+            sleep 1
+          done
+          [ $success -eq 1 ] || exit 42
+          sudo kvm-ok
+          sudo systemctl enable --now libvirtd
