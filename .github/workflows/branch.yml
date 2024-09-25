@@ -1,0 +1,26 @@
+name: Branch push
+on:
+  workflow_dispatch:
+
+
+jobs:
+  branch-change:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: ThinkParQ/checkout-action@4ef6c4b580d533661b37600c653b2d681ddadf74
+        with:
+          fetch-depth: 0
+      - name: Check qemu-kvm
+        run: |
+          n=0
+          until [ "$n" -ge 5 ]; do
+            success=1
+            sudo apt update && sudo apt install -y cpu-checker qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virtinst virt-manager libvirt-daemon && break || success=0
+            n=$((n+1)) 
+            sleep 1
+          done
+          [ $success -eq 1 ] || exit 42
+          sudo kvm-ok
+          sudo systemctl enable --now libvirtd
+          grep -E --color '(vmx|svm)' /proc/cpuinfo
