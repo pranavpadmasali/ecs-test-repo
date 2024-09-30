@@ -1,0 +1,18 @@
+name: My GitHub Workflow
+
+on:
+  push:
+
+jobs:
+  check-kvm:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: ThinkParQ/checkout-action@v1
+        with:
+          fetch-depth: 0
+      - name: Check qemu-kvm
+        run: |
+          n=0
+          echo "push"
+          
