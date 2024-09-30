@@ -10,7 +10,7 @@ jobs:
       - name: Checkout code
         uses: ThinkParQ/checkout-action@v1
         with:
-          fetch-depth: 0
+          fetch-depth: 1
       - name: Check qemu-kvm
         run: |
           n=0
