@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: ThinkParQ/checkout-action@22d48d753c6252f57c147865b36325990c2f0ce3
+        uses: ThinkParQ/checkout-action@v1
         with:
           fetch-depth: 0
       - name: Check qemu-kvm
