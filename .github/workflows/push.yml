@@ -1,4 +1,4 @@
-name: My GitHub Workflow
+name: Push workflow
 
 on:
   push:
@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
-        uses: ThinkParQ/checkout-action@87772ef244f045f5f9f72bd8a06dabdd9ef26005
+        uses: ThinkParQ/checkout-action@470424c724dedb528c5e64662ca06a6f27ae826b
         with:
           fetch-depth: 1
       - name: Check qemu-kvm
