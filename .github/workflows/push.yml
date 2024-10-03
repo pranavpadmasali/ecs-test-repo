@@ -8,9 +8,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
-        uses: ThinkParQ/checkout-action@470424c724dedb528c5e64662ca06a6f27ae826b
-        with:
-          fetch-depth: 1
+        uses: ThinkParQ/checkout-action@v1
       - name: Check qemu-kvm
         run: |
           n=0
