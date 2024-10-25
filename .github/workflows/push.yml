@@ -15,10 +15,10 @@ jobs:
           export TEST_VM_IPS=(192.168.121.36 192.168.121.243 192.168.121.157)
           echo "${TEST_VM_IPS[@]}" >> "$GITHUB_OUTPUT"
       - name: check array variable
-        run: >
+        run: |
           echo ${{ steps.hosts.outputs.TEST_VM_IPS[@] }}
       - name: check only variable
-        run: >
+        run: |
           echo ${{ steps.hosts.outputs.TEST_VM_IPS }}
           
           
