@@ -14,7 +14,7 @@ jobs:
         run: >
           export 
           TEST_VM_IPS=(192.168.121.36 192.168.121.243 192.168.121.157) &&
-          echo ${{ steps.hosts.outputs.TEST_VM_IPS[@] }}
+          echo ${TEST_VM_IPS[@]}
           
           
           
