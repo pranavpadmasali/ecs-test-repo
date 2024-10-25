@@ -9,11 +9,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: ThinkParQ/checkout-action@v1
+      - name: env
+        run: echo "TEST_VM_IPS=(192.168.121.36 192.168.121.243 192.168.121.157)" > .env
       - name: Check qemu-kvm
         id: hosts
         run: >
-          export 
-          TEST_VM_IPS=(192.168.121.36 192.168.121.243 192.168.121.157) &&
+          source .env &&
           echo ${TEST_VM_IPS[@]}
           
           
