@@ -11,14 +11,10 @@ jobs:
         uses: ThinkParQ/checkout-action@v1
       - name: Check qemu-kvm
         id: hosts
-        run: |
-          export TEST_VM_IPS=(192.168.121.36 192.168.121.243 192.168.121.157)
-          echo "${TEST_VM_IPS[@]}" >> "$GITHUB_OUTPUT"
-      # - name: check array variable
-      #   run: |
-      #     echo ${{ steps.hosts.outputs.TEST_VM_IPS[@] }}
-      - name: check only variable
-        run: |
-          echo ${{ steps.hosts.outputs.TEST_VM_IPS }}
+        run: >
+          export 
+          TEST_VM_IPS=(192.168.121.36 192.168.121.243 192.168.121.157) &&
+          echo ${{ steps.hosts.outputs.TEST_VM_IPS[@] }}
+          
           
           
