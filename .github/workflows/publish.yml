@@ -25,7 +25,7 @@ jobs:
           ls -ltrha
           pwd
       - name: Create Release
-        uses: ncipollo/release-action@v1
+        uses: pranavpadmasali/action-gh-release@master
         with:
           artifacts: "has*"
           allowUpdates: true
