@@ -22,10 +22,12 @@ jobs:
           echo 'tilde' > has~tilde.txt
           echo 'dash' > has-dash.txt
           echo 'space' > 'has space.txt'
+          ls -ltrha
+          pwd
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "has.*txt"
+          artifacts: "has*"
           allowUpdates: true
           updateOnlyUnreleased: true
           removeArtifacts: true
