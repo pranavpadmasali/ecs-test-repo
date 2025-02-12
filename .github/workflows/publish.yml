@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   check-kvm:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: ThinkParQ/checkout-action@v1
