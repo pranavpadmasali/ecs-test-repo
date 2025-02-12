@@ -1,4 +1,4 @@
-name: My GitHub Workflow
+name: ON TAG PUSH
 
 on:
   workflow_dispatch:
