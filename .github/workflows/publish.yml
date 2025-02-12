@@ -26,10 +26,12 @@ jobs:
           pwd
       - name: Create Release
         uses: pranavpadmasali/action-gh-release@master
-        # with:
-        #   artifacts: "has*"
-        #   allowUpdates: true
-        #   updateOnlyUnreleased: true
-        #   removeArtifacts: true
-        #   generateReleaseNotes: true
-        #   draft: false
+        with:
+          files: |
+            has*
+          # artifacts: "has*"
+          # allowUpdates: true
+          # updateOnlyUnreleased: true
+          # removeArtifacts: true
+          # generateReleaseNotes: true
+          # draft: false
