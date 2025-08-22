@@ -7,15 +7,30 @@ jobs:
   check-kvm:
     runs-on: ubuntu-22.04
     steps:
-      - name: Checkout code
-        uses: ThinkParQ/checkout-action@v1
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
       - name: env
         run: echo "TEST_VM_IPS=(192.168.121.36 192.168.121.243 192.168.121.157)" > .env
       - name: Check qemu-kvm
         id: hosts
-        run: >
-          source .env &&
-          echo ${TEST_VM_IPS[@]}
+        run: |
+          echo "Hello" > abc.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: abc-file
+          path: abc.json
+
+  download:
+    - uses: actions/checkout@v5
+      with:
+        fetch-depth: 0
+    - uses: actions/download-artifact@v5
+      with:
+        name: abc-file
+    - name: Display structure of downloaded files
+      run: ls -R
+      
           
           
           
