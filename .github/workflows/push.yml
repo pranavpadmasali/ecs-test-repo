@@ -2,6 +2,7 @@ name: Push workflow
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   check-kvm:
