@@ -23,17 +23,18 @@ jobs:
           path: abc.json
 
   download:
-      runs-on: ubuntu-22.04
-      steps:
-        - uses: actions/checkout@v5
-          with:
-            fetch-depth: 0
-        - uses: actions/download-artifact@v5
-          with:
-            name: abc-file
-        - name: Display structure of downloaded files
-          run: ls -R
-          
+    needs: check-kvm
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v5
+        with:
+          name: abc-file
+      - name: Display structure of downloaded files
+        run: ls -R
+        
           
           
           
